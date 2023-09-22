@@ -1,0 +1,121 @@
+﻿@using DataAccessLayer.EntityFramework
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>İstatistikler</h2>
+<br />
+
+<div class="table">
+
+    <div class="table-body table-responsive p-1">
+        <table class="table table-borderless table-valign-middle" style="text-align: center">
+
+            <tr>
+                <th class="background bg-primary" style="border-right: 5px solid">
+                    <h3><b>@ViewBag.Categorysum</b></h3>
+                </th>
+                <th class="background bg-purple" style="border-right: 5px solid">
+                    <h3><b>@ViewBag.Ky</b></h3>
+                </th>
+                <th class="background bg-success" style="border-right: 5px solid">
+                    <h3><b>@ViewBag.WNA</b></h3>
+                </th>
+                <th class="background bg-danger" style="border-right: 5px solid">
+                    <h3><b>@ViewBag.Ka</b></h3>
+                </th>
+                <th class="background bg-info" style="border-right: 5px solid">
+                    <h3><b>@ViewBag.dF</b></h3>
+                </th>
+            </tr>
+
+            <tr>
+                <td class="background bg-primary" style="border-right: 5px solid">
+                    Toplam Kategori Sayısı
+                </td>
+                <td class="background bg-purple" style="border-right: 5px solid">
+                    Yazılım Kategorisine Ait Başlık Sayısı
+                </td>
+                <td class="background bg-success" style="border-right: 5px solid">
+                    Yazar Adında 'A' Harfi Olan Yazarlar
+                </td>
+                <td class="background bg-danger" style="border-right: 5px solid">
+                    En Fazla Başlığa Sahip Kategori Adı
+                </td>
+                <td class="background bg-info" style="border-right:5px solid">
+                    Kategori Tablosundaki Durumu True ve False Olanların Sayısal Farkı
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row" style="text-align: center">
+            <div class="col-lg-2 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.Categorysum</h3>
+
+                        <p>Toplam Kategori Sayısı</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-2 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.Ky</h3>
+
+                        <p>Yazılım Kategorisine Ait Başlık Sayısı</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-2 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.WNA</h3>
+
+                        <p>Yazar Adında 'A' Harfi Olan Yazarlar</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-2 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.Ka</h3>
+
+                        <p>En Fazla Başlığa Sahip Kategori Adı buraya</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.dF</h3>
+
+                        <p>Kategori Tablosundaki Durumu True ve False Olanların Sayısal Farkı</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ./col -->
+        </div>
+    </div>
+</section>
+
+

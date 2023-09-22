@@ -1,0 +1,61 @@
+﻿@using EntityLayer.Concrete
+@model List<Skill>
+
+@{
+    ViewBag.Title = "SkillList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{string delyazi = ""; }
+@{string delicon = ""; }
+@{string delcolor = ""; }
+@{string stayazi = ""; }
+@{string staicon = ""; }
+@{string stacolor = ""; }
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>İsim</th>
+        <th>Yetenek</th>
+        <th>Derece</th>
+        <th>Durum</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        switch (item.SkillStatus)
+        {
+            case true:
+                delyazi = "Pasif Yap";
+                delicon = "fas fa-lock";
+                delcolor = "btn btn-danger btn-sm";
+                stacolor = "badge badge-success";
+                staicon = "fas fa-lock-open";
+                stayazi = "Aktif";
+                break;
+            case false:
+                delyazi = "Aktif Yap";
+                delicon = "fas fa-lock-open";
+                delcolor = "btn btn-success btn-sm";
+                stacolor = "badge badge-danger";
+                staicon = "fas fa-lock";
+                stayazi = "Pasif";
+                break;
+        }
+        <tr>
+            <th>@item.SkillID</th>
+            <td>@item.Writer.WriterName @item.Writer.WriterSurName</td>
+            <td>@item.SkillName</td>
+            <td>@item.SkillRank</td>
+            <td><span class="@stacolor">@stayazi <i class="@staicon"></i></span></td>
+            <td>
+                <span><a class="@delcolor" href="/Skill/DeleteSkill/@item.SkillID">@delyazi <i class="@delicon"></i></a></span>
+                <span><a class="btn badge-warning" href="/Skill/EditSkill/@item.SkillID">Güncelle</a></span>
+            </td>
+        </tr>
+    }
+
+</table>
+@*razor syntax*@
+
+<a href="/Skill/AddSkill" class="btn btn-info">Yeni Yetenek Ekle</a>
