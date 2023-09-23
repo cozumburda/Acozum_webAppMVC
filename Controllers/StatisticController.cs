@@ -8,6 +8,7 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.SessionState;
@@ -36,10 +37,14 @@ namespace Acozum_webAppMVC.Controllers
 
             List<Writer> isim = wm.GetList();
             var WL = isim.Where(x => x.WriterName.Contains("A"));
-            var WLA = WL.Select(x => x.WriterName).ToList();
-            foreach (var WNS in WLA)
+            var WLA = WL.Select(x => x.WriterName).ToArray();
+            var WNS = "";
+            for (int i = 0; i < WLA.Length; i++)
             {
-                ViewBag.WNA=WLA[0] + " - " + WLA[1];
+                var WNV = WLA[i];
+                WNS += ("-" + WNV);
+
+                ViewBag.WNA = WNS.Substring(1);
             }
 
             List<Heading> kt = hm.GetList();
