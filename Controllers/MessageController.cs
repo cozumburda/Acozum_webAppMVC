@@ -39,10 +39,12 @@ namespace Acozum_webAppMVC.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message p)
         {
+            
             ValidationResult result = messagevalidator.Validate(p);
             if (result.IsValid)
             {
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                p.SenderMail = "admin@gmail.com";
                 mm.MessageAdd(p);
                 return RedirectToAction("Sendbox");
             }
@@ -70,6 +72,7 @@ namespace Acozum_webAppMVC.Controllers
             var messagetrashlist = mm.GetListTrashbox();
             return View(messagetrashlist);
         }
+        
         public ActionResult GetInboxMessageDetails(int id)
         {
             var invalues = mm.GetByID(id);
@@ -84,6 +87,8 @@ namespace Acozum_webAppMVC.Controllers
         public ActionResult GetSendboxMessageDetails(int id)
         {
             var snvalues = mm.GetByID(id);
+            var rawmessage = snvalues.MessageContent;
+            ViewBag.rwm = rawmessage;
             return View(snvalues);
         }
         public ActionResult GetDraftboxMessageDetails(int id)
