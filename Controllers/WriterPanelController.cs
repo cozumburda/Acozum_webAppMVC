@@ -14,15 +14,18 @@ namespace Acozum_webAppMVC.Controllers
         // GET: WriterPanel
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        WriterManager wm = new WriterManager(new EfWriterDal());
         public ActionResult WriterProfile()
         {
             return View();
         }
         [AllowAnonymous]
-        public ActionResult MyHeading()
+        public ActionResult MyHeading(string p)
         {
-            //id = 4;
-            var values = hm.GetListByWriter();
+            var c = wm.GetList();
+            p = (string)Session["WriterMail"];
+            var writeridinfoH = c.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
+            var values = hm.GetListByWriter(writeridinfoH);
             return View(values);
         }
 
@@ -42,8 +45,11 @@ namespace Acozum_webAppMVC.Controllers
         [HttpPost]
         public ActionResult NewHeading(Heading p)
         {
+            var c = wm.GetList();
+            string writermailinfo = (string)Session["WriterMail"];
+            var writeridinfoH = c.Where(x => x.WriterMail == writermailinfo).Select(y => y.WriterID).FirstOrDefault();
             p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.WriterID = 4;
+            p.WriterID = writeridinfoH;
             p.HeadingStatus = true;
             hm.HeadingAdd(p);
             return RedirectToAction("MyHeading");
@@ -83,7 +89,11 @@ namespace Acozum_webAppMVC.Controllers
             }
             hm.HeadingDelete(headingvalue);
             return RedirectToAction("MyHeading");
-
+        }
+        public ActionResult AllHeading()
+        {
+            var headings = hm.GetList();
+            return View(headings);
         }
     }
 }

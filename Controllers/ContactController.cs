@@ -16,6 +16,7 @@ namespace Acozum_webAppMVC.Controllers
         ContactManager ctm = new ContactManager(new EfContactDal());
         MessageManager mm = new MessageManager(new EfMessageDal());
         ContactValidator ctv = new ContactValidator();
+        
         public ActionResult Index()
         {
             var contactvalues = ctm.GetList();

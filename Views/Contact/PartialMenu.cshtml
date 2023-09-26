@@ -12,13 +12,16 @@
         </div>
         <div class="card-body p-0">
             <ul class="nav nav-pills flex-column">
-                <li class="nav-item active">
-                    <a href="/Contact/Index/" class="nav-link">
-                        <i class="fas fa-mail-bulk"></i> İletişim
-                        <span class="badge bg-success float-right">Okunmamış @ViewBag.cnrv Mesaj</span><br />
-                        <span class="badge bg-info float-right">Toplam @ViewBag.cvc Mesaj</span><br />
-                    </a>
-                </li>
+                @if (User.IsInRole("B")) 
+                {                 
+                    <li class="nav-item active">
+                        <a href="/Contact/Index/" class="nav-link">
+                            <i class="fas fa-mail-bulk"></i> İletişim
+                            <span class="badge bg-success float-right">Okunmamış @ViewBag.cnrv Mesaj</span><br />
+                            <span class="badge bg-info float-right">Toplam @ViewBag.cvc Mesaj</span><br />
+                        </a>
+                    </li>
+                }
                 <li class="nav-item">
                     <a href="/Message/Inbox/" class="nav-link">
                         <i class="fas fa-inbox"></i> Gelen Mesajlar
