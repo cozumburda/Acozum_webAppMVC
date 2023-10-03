@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Acozum_webAppMVC.Controllers
-{
+{    
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -30,6 +30,11 @@ namespace Acozum_webAppMVC.Controllers
         public ActionResult Test()
         {
             return View(); 
-        }  
+        }
+        [AllowAnonymous]
+        public ActionResult HomePage()
+        {
+            return View();
+        }
     }
 }

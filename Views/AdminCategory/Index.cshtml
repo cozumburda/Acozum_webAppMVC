@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <br />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.7.1.js"></script>
 <table class="table table-bordered">
     <tr>
         <th>#</th>
@@ -33,3 +35,11 @@
 @*razor syntax*@
 
 <a href="/AdminCategory/AddCategory" class="btn btn-info">Yeni Kategori</a>
+@if (@TempData["kontrol"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Tebrikler!", "@TempData["kontrol"]", "success");
+        };
+    </script>
+}

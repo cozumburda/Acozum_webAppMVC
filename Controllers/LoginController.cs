@@ -21,11 +21,11 @@ namespace Acozum_webAppMVC.Controllers
     public class LoginController : Controller
     {        // GET: Login
         AdminManager adm = new AdminManager(new EfAdminDal());
+        WriterLoginManager wlm= new WriterLoginManager(new EfWriterDal());
         WriterManager wm = new WriterManager(new EfWriterDal());
         AdminValidator adminvalidator = new AdminValidator();
         WriterValidator writervalidator = new WriterValidator();
         Cryptograph crypvalue = new Cryptograph();
-
 
         [HttpGet]
         public ActionResult Index()
@@ -39,8 +39,9 @@ namespace Acozum_webAppMVC.Controllers
 
             p.AdminUserName = crypvalue.Encrypt(p.AdminUserName);
             p.AdminPassword = crypvalue.Encrypt(p.AdminPassword);
-            var c = adm.GetList();
-            var adminuserinfo = c.FirstOrDefault(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == p.AdminPassword);
+            //var c = adm.GetList();
+            //var adminuserinfo = c.FirstOrDefault(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == p.AdminPassword);
+            var adminuserinfo = adm.GetAdmin(p.AdminUserName, p.AdminPassword);
             if (adminuserinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
@@ -57,73 +58,7 @@ namespace Acozum_webAppMVC.Controllers
             }
             //Context c = new Context();
             //var adminuserinfo = c.Admins.FirstOrDefault(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == p.AdminPassword);
-        }
-
-        [Authorize(Roles = "B")]
-        public ActionResult ListAdmin()
-        {
-            var adminusername = adm.GetList().Where(x => x.AdminUserName != null).ToList();
-            foreach (var item in adminusername)
-            {
-                item.AdminUserName = crypvalue.Decrypt(item.AdminUserName);
-            }
-            var adminvalues = adm.GetList();
-            return View(adminvalues);
-        }
-
-        [HttpGet]
-        public ActionResult AddAdmin()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddAdmin(Admin p)
-        {
-            ValidationResult result = adminvalidator.Validate(p);
-            if (result.IsValid)
-            {
-                p.AdminUserName = crypvalue.Encrypt(p.AdminUserName);
-                p.AdminPassword = crypvalue.Encrypt(p.AdminPassword);
-                adm.AdminAdd(p);
-                return RedirectToAction("ListAdmin");
-            }
-            else
-            {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
-        }
-        [HttpGet]
-        public ActionResult EditAdmin(int id)
-        {
-            var adminvalue = adm.GetByID(id);
-            adminvalue.AdminUserName = crypvalue.Decrypt(adminvalue.AdminUserName);
-            adminvalue.AdminPassword = crypvalue.Decrypt(adminvalue.AdminPassword);
-            return View(adminvalue);
-        }
-        [HttpPost]
-        public ActionResult EditAdmin(Admin p)
-        {
-            ValidationResult result = adminvalidator.Validate(p);
-            if (result.IsValid)
-            {
-                p.AdminUserName = crypvalue.Encrypt(p.AdminUserName);
-                p.AdminPassword = crypvalue.Encrypt(p.AdminPassword);
-                adm.AdminUpdate(p);
-                return RedirectToAction("ListAdmin");
-            }
-            else
-            {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
-        }
+        }      
 
         [HttpGet]
         public ActionResult WriterLogin()
@@ -145,8 +80,9 @@ namespace Acozum_webAppMVC.Controllers
 
             p.WriterMail = crypvalue.Encrypt(p.WriterMail);
             p.WriterPassword = crypvalue.Encrypt(p.WriterPassword);
-            var c = wm.GetList();
-            var writeruserinfo = c.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
+            //var c = wm.GetList();
+            //var writeruserinfo = c.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
+            var writeruserinfo=wlm.GetWriter(p.WriterMail, p.WriterPassword);
             if (writeruserinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(writeruserinfo.WriterMail, false);

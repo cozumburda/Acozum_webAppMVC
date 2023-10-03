@@ -6,7 +6,7 @@
 
 <h1>Yeni Admin Oluşturma Sayfası</h1>
 <br />
-@using (Html.BeginForm("AddAdmin", "Login", FormMethod.Post))
+@using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post))
 {
     <div class="form-group">
         @Html.Label("Admin Kullanıcı Adı")
@@ -18,9 +18,10 @@
         @Html.ValidationMessageFor(x => x.AdminPassword, "", new { @class = "badge badge-danger" })
         <br />
         @Html.Label("Admin Rolü")
-        @Html.TextBoxFor(x => x.AdminRole, new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.AdminRole, (List<SelectListItem>)ViewBag.lr, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.AdminRole, "", new { @class = "badge badge-danger" })
         <br />
+        @*TextBoxFor(x => x.AdminRole, new { @class = "form-control" })*@
         <button class="btn btn-info">Kaydet</button>
     </div>
 }

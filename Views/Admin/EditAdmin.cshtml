@@ -6,12 +6,11 @@
 
 <br />
 <h2>Admin Güncelleme Sayfası</h2>
-@using (Html.BeginForm("EditAdmin", "Login", FormMethod.Post))
+@using (Html.BeginForm("EditAdmin", "Admin", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.Label("Admin ID")
-        @Html.TextBoxFor(x => x.AdminID, new { @class = "form-control" })
-        <br />
+        @Html.HiddenFor(x => x.AdminID, new { @class = "form-control" })
+
         @Html.Label("Admin Kullanıcı Adı")
         @Html.TextBoxFor(x => x.AdminUserName, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.AdminUserName, "", new { @class = "badge badge-danger" })
@@ -21,9 +20,11 @@
         @Html.ValidationMessageFor(x => x.AdminPassword, "", new { @class = "badge badge-danger" })
         <br />
         @Html.Label("Admin Rolü")
-        @Html.TextBoxFor(x => x.AdminRole, new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.AdminRole, (List<SelectListItem>)ViewBag.lr, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.AdminRole, "", new { @class = "badge badge-danger" })
         <br />
         <button class="btn btn-success">Güncelle</button>
     </div>
 }
+
+

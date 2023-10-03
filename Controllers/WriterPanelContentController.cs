@@ -23,6 +23,11 @@ namespace Acozum_webAppMVC.Controllers
             var contentvaluesw = ctm.GetListByWriter(writeridinfo);
             return View(contentvaluesw);
         }
+        public ActionResult ContentbyHeading(int id)
+        {
+            var contentvaluesw = ctm.GetListByHeadingID(id);
+            return View(contentvaluesw);
+        }
 
         [HttpGet]
         public ActionResult AddContent(int id)

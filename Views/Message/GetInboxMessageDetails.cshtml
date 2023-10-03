@@ -15,7 +15,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Gelen Mesaj Detayları</h1>
-                </div>                
+                </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -57,8 +57,8 @@
                                         <i class="fas fa-share"></i>
                                     </button>
                                 </div>-->
-                                <!-- /.btn-group -->
-                                <!--<button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
+                            <!-- /.btn-group -->
+                            <!--<button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
                                     <i class="fas fa-print"></i>
                                 </button>
                             </div>-->
@@ -73,7 +73,8 @@
                                 <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Yanıtla</button>
                                 <button type="button" class="btn btn-default"><i class="fas fa-share"></i> İlet</button>
                             </div>
-                            <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</button>
+                            <a href="/Message/DeleteMessageInbox/@Html.ValueFor(x=>x.MessageID)" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</a>
+                            <a href="/Message/SingSpamMessage/@Html.ValueFor(x=>x.MessageID)" class="btn btn-default"><i class="far fa-arrow-alt-circle-down"></i> Spam Olarak İşaretle</a>
                             <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Yazdır</button>
                         </div>
                         <!-- /.card-footer -->

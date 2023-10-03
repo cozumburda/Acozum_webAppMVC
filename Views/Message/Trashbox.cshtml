@@ -5,7 +5,7 @@
     ViewBag.Title = "Trashbox";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+@{string mailinfo = ""; }
 <!DOCTYPE html>
 <html>
 
@@ -30,7 +30,7 @@
             <div class="col-md-9">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title">Taslak Mesajlar</h3>
+                        <h3 class="card-title">Çöp Kutusu</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" placeholder="Mail Kutusunda Ara'">
@@ -72,6 +72,14 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
+                                        if (item.MessageValueStatusReceiver == "T")
+                                        {
+                                            mailinfo = item.SenderMail;
+                                        }
+                                        else if (item.MessageValueStatusSender == "T")
+                                        {
+                                            mailinfo = item.ReceiverMail;
+                                        }
                                         <tr>
                                             <td>
                                                 <div class="icheck-primary">
@@ -80,7 +88,7 @@
                                                 </div>
                                             </td>
                                             <td class="mailbox-star"><a href="/Message/GetTrashboxMessageDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
-                                            <td class="mailbox-name"><a href="/Message/GetTrashboxMessageDetails/@item.MessageID">@item.ReceiverMail</a></td>
+                                            <td class="mailbox-name"><a href="/Message/GetTrashboxMessageDetails/@item.MessageID">@mailinfo</a></td>
                                             <td class="mailbox-subject">
                                                 <b>@item.Subject</b> - @item.MessageContent.Substring(0, 30)...
                                             </td>

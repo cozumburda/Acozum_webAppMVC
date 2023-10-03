@@ -19,12 +19,12 @@ namespace Acozum_webAppMVC.Controllers
         public ActionResult Index()
         {
             var categoryvalues = cm.GetList();
-
             return View(categoryvalues);
         }
         [HttpGet]
         public ActionResult AddCategory()
         {
+            TempData["kontrol"] = null;
             return View();
         }
         [HttpPost]
@@ -34,11 +34,14 @@ namespace Acozum_webAppMVC.Controllers
             ValidationResult results = categoryvalidator.Validate(p);
             if (results.IsValid)
             {
-                cm.CategoryAdd(p);
+                TempData["kontrol"] = "Kategori Başarılı Bir Şekilde Kaydedildi";
+                cm.CategoryAdd(p);                
                 return RedirectToAction("Index");
+                
             }
             else
             {
+                TempData["kontrol"] = null;
                 foreach (var item in results.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

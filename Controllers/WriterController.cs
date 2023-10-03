@@ -17,6 +17,7 @@ namespace Acozum_webAppMVC.Controllers
         // GET: Writer
         WriterManager wm = new WriterManager(new EfWriterDal());
         WriterValidator writervalidator = new WriterValidator();
+        HeadingManager hm = new HeadingManager(new EfHeadingDal());
         Cryptograph crypvalue = new Cryptograph();
 
         [Authorize]
@@ -83,6 +84,25 @@ namespace Acozum_webAppMVC.Controllers
                 }
             }
             return View();
+        }
+        public ActionResult HeadingsWriter(int id)
+        {
+            var headingvalues = hm.GetListByWriter(id);
+            return View(headingvalues);
+        }
+        public ActionResult DeleteWriter(int id)
+        {
+            var writerval = wm.GetByID(id);
+            if (writerval.WriterStatus == true)
+            {
+                writerval.WriterStatus = false;
+            }
+            else if (writerval.WriterStatus == false)
+            {
+                writerval.WriterStatus = true;
+            }
+            wm.WriterDelete(writerval);
+            return RedirectToAction("Index");
         }
     }
 }

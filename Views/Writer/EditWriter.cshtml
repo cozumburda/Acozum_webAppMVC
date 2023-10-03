@@ -39,6 +39,7 @@
         @Html.Label("Yazar Başlığı")
         @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.WriterTitle, "", new { @class = "badge badge-danger" })
+        @Html.HiddenFor(x => x.WriterStatus, new { @class = "form-control" })
         <br />
         <button class="btn btn-success">Değişiklikleri Uygula</button>
     </div>

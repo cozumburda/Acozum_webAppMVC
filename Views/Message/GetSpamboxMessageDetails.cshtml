@@ -73,7 +73,8 @@
                                 <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Yanıtla</button>
                                 <button type="button" class="btn btn-default"><i class="fas fa-share"></i> İlet</button>
                             </div>
-                            <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</button>
+                            <a href="/Message/DeleteMessageInbox/@Html.ValueFor(x=>x.MessageID)" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</a>
+                            <a href="/Message/SingSpamMessage/@Html.ValueFor(x=>x.MessageID)" class="btn btn-default"><i class="far fa-arrow-alt-circle-up"></i> Spam Değil</a>
                             <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Yazdır</button>
                         </div>
                         <!-- /.card-footer -->

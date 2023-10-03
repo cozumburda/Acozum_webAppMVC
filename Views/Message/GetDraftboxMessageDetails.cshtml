@@ -40,7 +40,7 @@
                                 <h5>Konu: @Html.DisplayFor(x => x.Subject)</h5>
                                 <br />
                                 <h6>
-                                    Mail: @Html.DisplayFor(x => x.SenderMail)
+                                    Mail: @Html.DisplayFor(x => x.ReceiverMail)
                                     <span class="mailbox-read-time float-right">@DateTime.Parse(Html.DisplayFor(x => x.MessageDate).ToString()).ToString("dd-MMM-yyyy")</span>
                                 </h6>
                             </div>
@@ -64,16 +64,16 @@
                             </div>-->
                             <!-- /.mailbox-controls -->
                             <div class="mailbox-read-message">
-                                <p>@Html.DisplayFor(x => x.MessageContent)</p>
+                                <p>@Html.Raw(ViewBag.rwmd)</p>
                             </div>
                             <!-- /.mailbox-read-message -->
                         </div>
                         <div class="card-footer">
-                            <div class="float-right">
-                                <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Yanıtla</button>
-                                <button type="button" class="btn btn-default"><i class="fas fa-share"></i> İlet</button>
+                            <div class="float-right">                             
+                                <a href="/Message/DraftToSend/@Html.ValueFor(x=>x.MessageID)" class="btn btn-primary"><i class="far fa-envelope"></i>Gönder</a>
+                                <a href="/Message/DraftMessageEdit/@Html.ValueFor(x=>x.MessageID)" class="btn btn-default"><i class="far fa-envelope"></i> Düzenle ve Gönder</a>
                             </div>
-                            <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</button>
+                            <a href="/Message/DeleteMessageSendbox/@Html.ValueFor(x=>x.MessageID)" class="btn btn-default"><i class="far fa-trash-alt"></i> Sil</a>
                             <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Yazdır</button>
                         </div>
                         <!-- /.card-footer -->

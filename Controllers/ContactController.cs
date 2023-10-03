@@ -16,7 +16,6 @@ namespace Acozum_webAppMVC.Controllers
         ContactManager ctm = new ContactManager(new EfContactDal());
         MessageManager mm = new MessageManager(new EfMessageDal());
         ContactValidator ctv = new ContactValidator();
-        
         public ActionResult Index()
         {
             var contactvalues = ctm.GetList();
@@ -24,15 +23,16 @@ namespace Acozum_webAppMVC.Controllers
         }
         public PartialViewResult PartialMenu()
         {
+            string p = (string)Session["AdminUserName"];
             var contactcount = ctm.GetList().Count.ToString();
-            var sendcount = mm.GetListSendbox().Count.ToString();
-            var inboxcount = mm.GetListInbox().Count.ToString();
-            var draftcount = mm.GetListDraftbox().Count.ToString();
-            var spamboxcount = mm.GetListSpambox().Count.ToString();
-            var trashboxcount = mm.GetListTrashbox().Count.ToString();
+            var sendcount = mm.GetListSendbox(p).Count.ToString();
+            var inboxcount = mm.GetListInbox(p).Count.ToString();
+            var draftcount = mm.GetListDraftbox(p).Count.ToString();
+            var spamboxcount = mm.GetListSpambox(p).Count.ToString();
+            var trashboxcount = mm.GetListTrashbox(p).Count.ToString();
             var contnotread = ctm.GetList().Where(x => x.ContactReadStatus == false).ToList();
             var contnotreadv = contnotread.Count.ToString();
-            var inboxnotread = mm.GetListInbox().Where(x => x.MessageReadStatus == false).ToList();
+            var inboxnotread = mm.GetListInbox(p).Where(x => x.MessageReadStatus == false).ToList();
             var inboxnotreadv = inboxnotread.Count.ToString();
             ViewBag.inrv = inboxnotreadv;
             ViewBag.cnrv = contnotreadv;
@@ -44,8 +44,6 @@ namespace Acozum_webAppMVC.Controllers
             ViewBag.tvc = trashboxcount;
             return PartialView();
         }
-
-
         public ActionResult GetContactDetails(int id)
         {
             var contactvalues = ctm.GetByID(id);
@@ -57,5 +55,6 @@ namespace Acozum_webAppMVC.Controllers
             
             return View(contactvalues);
         }
+
     }
 }

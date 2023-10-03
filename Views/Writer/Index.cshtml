@@ -4,7 +4,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+@{string delyazi = ""; }
+@{string delicon = ""; }
+@{string delcolor = ""; }
+@{string stayazi = ""; }
+@{string staicon = ""; }
+@{string stacolor = ""; }
 <!DOCTYPE html>
 <html>
 <body class="hold-transition sidebar-mini">
@@ -30,10 +35,29 @@
                 <div class="row d-flex align-items-stretch">
                     @foreach (var item in Model)
                     {
+                        switch (item.WriterStatus)
+                        {
+                            case true:
+                                delyazi = "Pasif Yap";
+                                delicon = "fas fa-lock";
+                                delcolor = "btn btn-danger btn-sm";
+                                stacolor = "badge badge-success";
+                                staicon = "fas fa-lock-open";
+                                stayazi = "Aktif";
+                                break;
+                            case false:
+                                delyazi = "Aktif Yap";
+                                delicon = "fas fa-lock-open";
+                                delcolor = "btn btn-success btn-sm";
+                                stacolor = "badge badge-danger";
+                                staicon = "fas fa-lock";
+                                stayazi = "Pasif";
+                                break;
+                        }
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                             <div class="card bg-light">
                                 <div class="card-header text-muted border-bottom-0">
-                                    @item.WriterTitle
+                                    @item.WriterTitle <span class="@stacolor float-right">@stayazi <i class="@staicon"></i></span>
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
@@ -51,11 +75,14 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="text-right">
-                                        <a href="#" class="btn btn-sm bg-teal">
+                                        <a href="/Writer/HeadingsWriter/@item.WriterID" class="btn btn-sm bg-teal">
                                             <i class="fas fa-comments"></i> Yazarın Başlıkları
                                         </a>
                                         <a href="/Writer/EditWriter/@item.WriterID" class="btn btn-sm btn-primary">
                                             <i class="fas fa-user"></i> Profili Düzenle
+                                        </a>                                        
+                                        <a class="@delcolor" href="/Writer/DeleteWriter/@item.WriterID">
+                                            <i class="@delicon"></i> @delyazi
                                         </a>
                                     </div>
                                 </div>
@@ -65,8 +92,8 @@
                 </div>
             </div>
         </div>
-        <!-- /.card -->        
-    </section>    
+        <!-- /.card -->
+    </section>
     <!-- /.content -->
 </body>
 </html>

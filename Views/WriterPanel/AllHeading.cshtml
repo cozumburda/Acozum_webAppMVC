@@ -1,5 +1,7 @@
 ﻿@using EntityLayer.Concrete
-@model List<Heading>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Heading>
 @{
     ViewBag.Title = "AllHeading";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -7,15 +9,17 @@
 
 @{string catcolor = ""; }
 @*@{string delyazi = ""; }
-@{string delicon = ""; }
-@{string delcolor = ""; }*@
+    @{string delicon = ""; }
+    @{string delcolor = ""; }*@
 @*@{string stayazi = ""; }
     @{string staicon = ""; }
     @{string stacolor = ""; }*@
 
 <!DOCTYPE html>
 <html>
-
+<head>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+</head>
 <body class="hold-transition sidebar-mini">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -172,5 +176,12 @@
     </section>
 </body>
 </html>
-@*<a href="/WriterPanel/NewHeading/" class="btn btn-primary">Yeni Başlık Girişi</a>*@
+@Html.PagedListPager((IPagedList)Model, p => Url.Action("AllHeading", new { p }))
 
+@*, new PagedListRenderOptions
+{
+    LiElementClasses=new List<String>
+    {
+    "page-link"
+    }
+    }*@
