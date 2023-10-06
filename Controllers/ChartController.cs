@@ -42,7 +42,6 @@ namespace Acozum_webAppMVC.Controllers
                     CategoryCount = CC
 
                 });
-
             }
             return ct;
             //ct.Add(new CategoryClass()

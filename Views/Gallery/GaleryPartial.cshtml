@@ -1,0 +1,20 @@
+﻿<div class="modal" id="Modal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Resim Ekleme</h2>
+            </div>
+            <form method="post" action="/Gallery/AddImageFile/" new { enctype="multipart/form-data" }>
+                <div class="modal-body">
+                    <div>
+                        <label for="file">Resim Yükle:</label>
+                        <input type="file" name="file" id="file" /><br><br>
+                        <input type="submit" value="Resmi Gönder" />
+                        <br><br>
+                        @ViewBag.Message
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
-﻿using BusinessLayer.Concrete;
+﻿using Acozum_webAppMVC.Models;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,7 +93,78 @@ namespace Acozum_webAppMVC.Controllers
             }
             hm.HeadingDelete(headingvalue);
             return RedirectToAction("Index");
-            
+
+        }
+        public ActionResult CalendarIndex()
+        {
+            return View();
+        }
+        public JsonResult CalendarHeading()
+        {
+            var Events = CalenderList();
+            var events = Events.ToList();
+            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+        }
+
+        public List<CalenderClass> CalenderList()
+        {
+            var calendervalues = hm.GetList();
+            List<CalenderClass> cC = new List<CalenderClass>();
+            string eT = "Green";
+            foreach (var e in calendervalues)
+            {
+                switch (e.Category.CategoryName)
+                {
+                    case "Tiyatro":
+                        eT = "Green";
+                        break;
+                    case "Eğitim":
+                        eT = "Blue";
+                        break;
+                    case "Yazılım":
+                        eT = "Red";
+                        break;
+                    case "Kitap":
+                        eT = "Yellow";
+                        break;
+                    case "Spor":
+                        eT = "Orange";
+                        break;
+                    case "Film":
+                        eT = "Pink";
+                        break;
+                    case "Dizi":
+                        eT = "Gray";
+                        break;
+                    case "Sosyal Medya":
+                        eT = "Purple";
+                        break;
+                    case "Seyahat":
+                        eT = "Cyan";
+                        break;
+                }
+                int eID = e.HeadingID;
+                string eS = e.HeadingName;
+                string eD = e.Category.CategoryName;
+                DateTime eSt = DateTime.Parse(e.HeadingDate.ToString());
+                DateTime eEnd = eSt.AddHours(1);
+                string etc = eT;
+                bool eisfull = false;
+
+                cC.Add(new CalenderClass()
+                {
+                    EventID = eID,
+                    Subject = eS,
+                    Description = eD,
+                    Start = eSt,
+                    End = eEnd,
+                    ThemeColor = eT,
+                    IsFullDay = eisfull,
+                });
+            }
+
+            return cC;
         }
     }
 }

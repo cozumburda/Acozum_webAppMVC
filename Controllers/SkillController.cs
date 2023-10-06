@@ -17,7 +17,7 @@ namespace Acozum_webAppMVC.Controllers
         WriterManager wm = new WriterManager(new EfWriterDal());
         public ActionResult Index()
         {
-            var skillvalues = sm.GetList();
+            var skillvalues = (sm.GetList().Where(x=> x.SkillStatus==true)).ToList();
             return View(skillvalues);
         }
         [HttpGet]

@@ -93,10 +93,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li>
                         <a href="/Default/Headings/3">Sözlük</a>
                     </li>
-                    <li class="login">
-                        <button type="button" class="btn login-btn text-uppercase " data-toggle="modal" data-target="#exampleModalCenter">
-                            Giriş Yap
-                        </button>
+                    <li>
+                        <a class="btn btn-primary" href="/Login/WriterLogin/">GİRİŞ YAP</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter2" class="btn btn-info">
+                            Kayıt Ol
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -627,7 +630,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="col-lg-2 col-md-4 col-sm-6 mt-sm-5">
                     <ul class="list-footer" data-aos="fade-up">
                         <li>
-                            <a href="#register" data-toggle="modal" data-target="#exampleModalCenter" class="nav-link scroll">
+                            <a href="/Login/WriterLogin/" class="nav-link">
                                 Giriş Yap
                             </a>
                         </li>
@@ -636,11 +639,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 Kayıt Ol
                             </a>
                         </li>
+                        <li>
+                            <a href="/Login/Index/" class="nav-link">
+                                Admin Login
+                            </a>
+                        </li>
                         @*<li class="my-2">
-                    <a href="#" class="nav-link">
-                        License
-                    </a>
-                </li>*@
+            <a href="#" class="nav-link">
+                License
+            </a>
+        </li>*@
                     </ul>
                 </div>
                 <div class="offset-lg-1"></div>
@@ -703,7 +711,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="modal-body">
 
                     <div class="login px-4 mx-auto mw-100">
-                        <h5 class="text-center mb-4">Login Now</h5>
+                        <h5 class="text-center mb-4">Giriş Yap</h5>
                         <form action="#" method="post">
                             <div class="form-group">
                                 <label class="mb-2">Email address</label>
@@ -720,7 +728,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                             <button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
                             <p class="text-center pb-4">
-                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter2"> Don't have an account?</a>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalCenter2"> Hesabınız Yok Mu?</a>
                             </p>
                         </form>
                     </div>
@@ -741,30 +749,40 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="modal-body">
                     <div class="login px-4 mx-auto mw-100">
-                        <h5 class="text-center mb-4">Register Now</h5>
-                        <form action="#" method="post">
+                        <h5 class="text-center mb-4">Kayıt Ol</h5>
+                        <form action="/Writer/AddWriter/" method="post">
                             <div class="form-group">
-                                <label>First name</label>
+                                <label>İsim</label>
+                                <input type="text" class="form-control" name="WriterName" id="WriterName" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Soyisim</label>
+                                <input type="text" class="form-control" name="WriterSurName" id="WriterSurName" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Mailiniz</label>
+                                <input type="email" class="form-control" name="WriterMail" id="WriterMail" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="WriterPassword" id="WriterPassword" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Resim-Avatar</label>
+                                <input type="text" class="form-control" name="WriterImage" id="WriterImage" placeholder="Örneğin: https://mysite.com/myimage.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label>Hakkınızda</label>
+                                <input type="text" class="form-control" name="WriterAbout" id="WriterAbout" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label>Ünvan</label>
+                                <input type="text" class="form-control" name="WriterTitle" id="WriterTitle" placeholder="">
+                            </div>
 
-                                <input type="text" class="form-control" id="validationDefault01" placeholder="" required="">
-                            </div>
-                            <div class="form-group">
-                                <label>Last name</label>
-                                <input type="text" class="form-control" id="validationDefault02" placeholder="" required="">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="mb-2">Password</label>
-                                <input type="password" class="form-control" id="password1" placeholder="" required="">
-                            </div>
-                            <div class="form-group">
-                                <label>Confirm Password</label>
-                                <input type="password" class="form-control" id="password2" placeholder="" required="">
-                            </div>
-
-                            <button type="submit" class="btn btn-primary submit mb-4">Register</button>
+                            <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
                             <p class="text-center pb-4">
-                                <a href="#">By clicking Register, I agree to your terms</a>
+                                <a href="#">Kayıt Olarak Site Şartlarını Kabul Etmiş Olmaktasınız.</a>
                             </p>
                         </form>
 

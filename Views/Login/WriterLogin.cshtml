@@ -71,12 +71,13 @@
             </div>
         </div>
     </section>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
     <script src="~/AdminLTE-3.0.4/login-form-20/js/jquery.min.js"></script>
     <script src="~/AdminLTE-3.0.4/login-form-20/js/popper.js"></script>
     <script src="~/AdminLTE-3.0.4/login-form-20/js/bootstrap.min.js"></script>
     <script src="~/AdminLTE-3.0.4/login-form-20/js/main.js"></script>
-    @*<script>
+    <script>
         document.getElementById('btnGonder').onclick = function () {
             var v = grecaptcha.getResponse();
             if (v.length == 0) {
@@ -85,7 +86,16 @@
             } else {
                 return true;
             }
-        }</script>*@
+        }</script>
+
+    @if (@TempData["writeradd"] != null)
+    {
+        <script type="text/javascript">
+        window.onload = function () {
+            swal("Tebrikler!", "@Html.Raw(TempData["writeradd"])", "success");
+        };
+        </script>
+    }
 </body>
 </html>
 

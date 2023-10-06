@@ -37,6 +37,7 @@ namespace Acozum_webAppMVC.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult AddWriter(Writer p)
         {
@@ -46,6 +47,7 @@ namespace Acozum_webAppMVC.Controllers
                 p.WriterMail = crypvalue.Encrypt(p.WriterMail);
                 p.WriterPassword = crypvalue.Encrypt(p.WriterPassword);
                 wm.WriterAdd(p);
+                TempData["writeradd"] = "Hesabınız Oluşturuldu. Yönetici Onayı Sonrası Giriş Yapabilirsiniz.";
                 return RedirectToAction("Index");
             }
             else
