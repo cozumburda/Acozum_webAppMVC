@@ -31,7 +31,7 @@ namespace Acozum_webAppMVC.Controllers
                     string _path = Path.Combine(Server.MapPath("~/AdminLTE-3.0.4/images"), _FileName);
                     file.SaveAs(_path);
                     TempData["Message"] = "Başarılı bir şekilde yüklendi!!";
-                    p.ImagePath = _path;
+                    p.ImagePath = "/AdminLTE-3.0.4/images/" + _FileName;
                     p.ImageName = _FileName;
                     im.ImageFileAdd(p);
 
