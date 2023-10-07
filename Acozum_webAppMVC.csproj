@@ -568,7 +568,7 @@
     <Content Include="AdminLTE-3.0.4\web\images\Still.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\still2.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\testimonials.jpg" />
-    <Content Include="AdminLTE-3.0.4\web\images\Writers.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\writers.jpg" />
     <Content Include="AdminLTE-3.0.4\web\index.html" />
     <Content Include="AdminLTE-3.0.4\web\js\aos.js" />
     <Content Include="AdminLTE-3.0.4\web\js\bootstrap.js" />
